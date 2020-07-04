@@ -24,7 +24,10 @@
                 $(this).css("background","rgb(255, 255, 0)");
                 });
                 
-                
+                $(".btn1").on("click", function(){
+                $(".btn1").css("background","green");
+                $(this).css("background","green");
+                });
                 displayQ4Choices();
                 
                 function displayQ4Choices() {
@@ -55,6 +58,12 @@
                     score += 20;   
                 }
                 
+                    function rightAnswer1(index){
+                    $(`#q${index}Feedback`).html("Correct!");
+                    $(`#q${index}Feedback`).attr("class", "bg-success text-white");
+                    $(`#markImg${index}`).html("<img src ='img/checkmark.png' alt='checkmark'>");
+                    score += 12.5;   
+                }
                 // wrong answer function 
                 function wrongAnswer(index){
                     $(`#q${index}Feedback`).html("Incorrect!");
@@ -73,6 +82,8 @@
                 let q1Response = $("#q1").val().toLowerCase();
                 let q2Response = $("#q2").val();
                 let q4Response = $("input[name=q4]:checked").val();
+                //let q6Response = $("input[name=q6]:button").val();
+                let q7Response = $("#q7").val().toLowerCase();
                 
                 //Question1
                 if(q1Response == "sacramento") {
@@ -110,7 +121,20 @@
                 } else {
                     wrongAnswer(5);
                 }
-            
+                
+                // Question 6
+                if ($("#Alaska").css("background-color", "green")) {
+                    rightAnswer1(6);
+                } else {
+                    wrongAnswer(6);
+                }
+                
+                // Question 7
+                if(q7Response == "No"){
+                    rightAnswer1(7);
+                } else{
+                    wrongAnswer(7);
+                }
                 
                 $("#totalScore").html(`Total Score: ${score}`); 
                 $("#totalAttempts").html(`Total Attempts: ${++attempts}`);
@@ -164,6 +188,25 @@
         <img src="img/seal3.png" alt="Seal 3" class="q5Choice" id="seal3">
         <div id = "q5Feedback"></div>
         <br></br>
+        
+        
+        
+        <h3><span id="markImg6"></span> What is the biggest state in US state?</h3>
+        <input type='button' id="California" class="btn1" value="California"/>
+        <input type='button' id="Texas"  class="btn1" value="Texas"/>
+        <input type='button' id="Alaska" class="btn1" value="Alaska"/>
+        <input type='button' id="Nevada" class="btn1" value="Nevada"/>
+        </form>
+         <div id = "q6Feedback"></div>
+        
+        
+        <br><br>    
+        <h3><span id="markImg7"></span>Is Puerto Rico a United States state?</h3> 
+        <p><small> Yes or No answer.</small>
+        <input type="text" id="q7">
+        <br><br>
+        <div id="q7Feedback"></div>
+        <br>
         
         <h3 id="validationFdbk" class="bg-danger text-white"></h3>
         <button class="btn btn-outline-success"> Submit Quiz </button>
