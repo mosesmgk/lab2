@@ -86,6 +86,7 @@
                 let q4Response = $("input[name=q4]:checked").val();
                 // q6 global 
                 let q7Response = $("#q7").val().toLowerCase();
+                let q8Response = $("#q8").val();
                 
                 //Question1
                 if(q1Response == "sacramento") {
@@ -138,10 +139,28 @@
                     wrongAnswer(7);
                 }
                 
+                // Qustion 8 
+                if(q8Response == "1776"){
+                    rightAnswer1(8);
+                } else{
+                    wrongAnswer(8);
+                }
+                
+        
                 $("#totalScore").html(`Total Score: ${score}`); 
                 $("#totalAttempts").html(`Total Attempts: ${++attempts}`);
                 localStorage.setItem("total_attempts", attempts);
                 
+                //or                 ("Total Score: " + score);
+                     if(score < 80){
+                        $("#totalScore").css("background-color", "red");
+
+                    }
+                    else{
+                        $("#totalScore").css("background-color", "green");
+                        $("#gameMsg").html("Congratulations!");
+                        $("#gameMsg").css("color", "green");
+                    }
                 }
             }); //ready 
         </script>
@@ -199,7 +218,7 @@
         <input type='button' id="Alaska" class="btn1" value="Alaska"/>
         <input type='button' id="Nevada" class="btn1" value="Nevada"/>
         </form>
-         <div id = "q6Feedback"></div>
+        <div id = "q6Feedback"></div>
         
         
         <br><br>    
@@ -210,12 +229,19 @@
         <div id="q7Feedback"></div>
         <br>
         
+        <h3><span id="markImg8"></span>What year was the United States indepence?</h3>
+        <input id="q8" type="number" value="">
+        <br><br>
+        <div id="q8Feedback"></div>
+        <br>
+        
         <h3 id="validationFdbk" class="bg-danger text-white"></h3>
         <button class="btn btn-outline-success"> Submit Quiz </button>
         <br>
         <h2 id="totalScore" class="text-info"></h2>
         
         <h3 id="totalAttempts"></h3>
+        <h2 id="gameMsg"></h2>
         
        
 </body>
