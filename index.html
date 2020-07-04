@@ -24,9 +24,9 @@
                 $(this).css("background","rgb(255, 255, 0)");
                 });
                 
-                // QQuestion 6 buttons 
+                // Question 6 buttons 
                 $(".btn1").on("click", function(){
-                $(".btn1").css("background","green");
+                $(".btn1").css("background","");
                 $(this).css("background","green");
                 });
                 
@@ -127,7 +127,7 @@
                 }
                 
                 // Question 6
-                if ($("#Alaska").css("background-color", "green")) {
+                if ($("#Alaska").css("background-color") == "green") {
                     rightAnswer1(6);
                 } else {
                     wrongAnswer(6);
