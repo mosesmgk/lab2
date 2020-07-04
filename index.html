@@ -18,26 +18,28 @@
                 //event listeners
                 $("button").on("click", gradeQuiz);
                 
-        //question 5 images
+                //question 5 images
                 $(".q5Choice").on("click", function(){
                 $(".q5Choice").css("background","");
                 $(this).css("background","rgb(255, 255, 0)");
                 });
                 
+                // QQuestion 6 buttons 
                 $(".btn1").on("click", function(){
                 $(".btn1").css("background","green");
                 $(this).css("background","green");
                 });
-                displayQ4Choices();
                 
-                function displayQ4Choices() {
-                    let q4ChoicesArray = ["Maine", "Rhose Island", "Maryland", "Delaware"];
-                    q4ChoicesArray = _.shuffle(q4ChoicesArray);
-                    
-                    for (let i = 0; i < q4ChoicesArray.length; i++) {
-                        $("#q4Choices").append(` <input type="radio" name="q4" id="${q4ChoicesArray[i]}"value=${q4ChoicesArray[i]}"> <label for="${q4ChoicesArray[i]}"> ${q4ChoicesArray[i]}</label>`);
+                displayQ4Choices();
+                function displayQ4Choices(){
+                let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delware"];
+                q4ChoicesArray=_.shuffle(q4ChoicesArray);
+
+                    for (let i=0; i < q4ChoicesArray.length; i++) {
+                    $("#q4Choices").append(` <input type="radio" name="q4" id= "${q4ChoicesArray[i]}"
+                    value="${q4ChoicesArray[i]}"> <label for="${q4ChoicesArray[i]}"> ${q4ChoicesArray[i]}</label>`);
                     }
-                }
+                    }//displayQ4Choices
                 
                 //functions 
                 function isFormValid(){
@@ -82,7 +84,7 @@
                 let q1Response = $("#q1").val().toLowerCase();
                 let q2Response = $("#q2").val();
                 let q4Response = $("input[name=q4]:checked").val();
-                //let q6Response = $("input[name=q6]:button").val();
+                // q6 global 
                 let q7Response = $("#q7").val().toLowerCase();
                 
                 //Question1
@@ -130,7 +132,7 @@
                 }
                 
                 // Question 7
-                if(q7Response == "No"){
+                if(q7Response == "no"){
                     rightAnswer1(7);
                 } else{
                     wrongAnswer(7);
