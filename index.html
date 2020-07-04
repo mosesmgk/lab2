@@ -151,15 +151,15 @@
                 $("#totalAttempts").html(`Total Attempts: ${++attempts}`);
                 localStorage.setItem("total_attempts", attempts);
                 
-                //or                 ("Total Score: " + score);
+                //Validation over and under 80 
                      if(score < 80){
                         $("#totalScore").css("background-color", "red");
-
+                        $("#gValidation").html("Keep trying!");
                     }
                     else{
                         $("#totalScore").css("background-color", "green");
-                        $("#gameMsg").html("Congratulations!");
-                        $("#gameMsg").css("color", "green");
+                        $("#gValidation").html("Congratulations you Passed!");
+                        $("#gValidation").css("color", "green");
                     }
                 }
             }); //ready 
@@ -241,7 +241,7 @@
         <h2 id="totalScore" class="text-info"></h2>
         
         <h3 id="totalAttempts"></h3>
-        <h2 id="gameMsg"></h2>
+        <h2 id="gValidation"></h2>
         
        
 </body>
