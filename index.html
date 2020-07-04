@@ -9,7 +9,7 @@
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
     
          <script>
-            /* global $ */ /* global _ */ /* global localStorage */
+            /* global $ */ /* global _ */ /* global localStorage */ 
             $(document).ready(function() {
             
             //Global Variable for the righAnswer()
@@ -57,7 +57,7 @@
                     $(`#q${index}Feedback`).html("Correct!");
                     $(`#q${index}Feedback`).attr("class", "bg-success text-white");
                     $(`#markImg${index}`).html("<img src ='img/checkmark.png' alt='checkmark'>");
-                    score += 20;   
+                    score += 12.5;   
                 }
                 
                     function rightAnswer1(index){
@@ -81,6 +81,7 @@
                     }
                
                 //variables 
+                score = 0 
                 let q1Response = $("#q1").val().toLowerCase();
                 let q2Response = $("#q2").val();
                 let q4Response = $("input[name=q4]:checked").val();
@@ -212,7 +213,7 @@
         
         
         
-        <h3><span id="markImg6"></span> What is the biggest state in US state?</h3>
+        <h3><span id="markImg6"></span> What is the biggest state in US?</h3>
         <input type='button' id="California" class="btn1" value="California"/>
         <input type='button' id="Texas"  class="btn1" value="Texas"/>
         <input type='button' id="Alaska" class="btn1" value="Alaska"/>
