@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="uft-8">
+    <title>US Quiz</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </script>
+     <script>
+            /* global $ */ 
+            $(document).ready(function() {
+            
+            //Global Variable for the righAnswer()
+                    var score = 0;
+                
+                //event listeners
+                $("button").on("click", gradeQuiz);
+                
+                //functions 
+                function isFormValid(){
+                    let isValid = true; 
+                    if ($("#q1").val() == "") {
+                        isValid = false; 
+                        $("#validationFdbk").html("Question 1 was not answered");
+                    }
+                
+                    return isValid;
+                } 
+                
+                //function right answer
+                function rightAnswer(index){
+                    $(`#q${index}Feedback`).html("Correct!");
+                    $(`#q${index}Feedback`).attr("class", "bg-success text-white");
+                    $(`#markImg${index}`).html("<img src ='img/checkmark.png' alt='checkmark'>");
+                    score += 20;   
+                }
+                
+                // wrong answer function 
+                function wrongAnswer(index){
+                    $(`#q${index}Feedback`).html("Incorrect!");
+                    $(`#q${index}Feedback`).attr("class", "bg-warning text-white");
+                    $(`#markImg${index}`).html("<img src ='img/xmark.png' alt='xmark'>");
+                }
+                
+                function gradeQuiz(){
+                    $("#validationFdbk").html(""); //reset validation feedback
+                    
+                    if (!isFormValid()) {
+                        return;
+                    }
+               
+                //variables 
+                let q1Response = $("#q1").val().toLowerCase();
+                let q2Response = $("#q2").val();
+                let q4Response = $("input[name=q4]:checked").val();
+                
+                //Question1
+                if(q1Response == "sacramento") {
+                    rightAnswer(1);
+                } else {
+                    wrongAnswer(1);
+                }
+                //Question 2 
+                if(q2Response == "mo") {
+                    rightAnswer(2);
+                } else {
+                    wrongAnswer(2);
+                }
+                
+                //Question 3
+                if($("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked") &&
+                 !$("#Jackson").is(":checked") && !$("#Franklin").is(":checked")) {
+                     rightAnswer(3);
+                 } else {
+                     wrongAnswer(3);
+                 }
+                
+                // Question 4 
+                
+                if(q4Response == "Rhode Island") {
+                    rightAnswer(4);
+                } else {
+                    wrongAnswer(4);
+                }
+                
+                $("#totalScore").html(`Total Score: ${score}`); 
+                
+                }
+            }); //ready 
+        </script>
+
+</head>
+<body class="text-center">
+    <h1 class="jumbotron"> US Geography Quiz </h1>
+
+        <h3><span id ="markImg1"></span>What is the capitol of California?</h3>
+        <input type="text" id="q1">
+        <br><br>
+        <div id="q1Feedback"></div>
+        <br>
+        
+        <h3><span id="markImg2"></span>What is the longest river?</h2>
+        <select id="q2">
+            <option value="">Select One</option>
+            <option>Mississippi</option>
+            <option>Missouri</option>
+            <option>Colorado</option>
+            <option>Delaware</option>
+        </select>
+        
+        <br><br>
+        <div id="q2Feedback"></div>
+        <br>
+        
+        <h3><span id="markImg3"></span>What presidents are carved into mount Rushmore?</h3>
+        <input type="checkbox" id=" Jackson"><label for="Jackson"> A.Jackson</label>
+        <input type="checkbox" id=" Franklin"><label for="Franklin"> B. Franklin</label>
+        <input type="checkbox" id=" Jefferson"><label for ="Jefferson"> T. Jefferson</label>
+        <input type="checkbox" id=" Roosevelt"><label for ="Roosevelt"> T. Roosevelt</label>
+        <br><br>
+        
+        <div id = "q3Feedback"></div>
+        
+        <h3><span id="markImg4"></span> What is the smallest US State?</h3>
+        <input type="radio" name="q4" id="me" value="Maine"><label for="me">Maine </label>
+        <input type="radio" name="q4" id="ri" value="Rhode Island"><label for="ri">Rhode Island </label>
+        <input type="radio" name="q4" id="md" value="Maryland"><label for="md">Maryland</label>
+        <input type="radio" name="q4" id="de" value="Delaware"><label for="de">Delaware</label>
+        <div id ="q4Feedback"></div>
+        <br></br>
+        <h3 id="validationFdbk" class"bg-danger text-white"></h3>
+        
+        
+        
+        
+        <h3 id="validationFdbk" class="bg-danger text-white"></h3>
+        <button class="btn btn-outline-success"> Submit Quiz </button>
+        <br>
+        <h2 id="totalScore" class="text-info"></h2>
+        
+       
+</body>
+</html>
